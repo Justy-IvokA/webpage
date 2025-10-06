@@ -1,0 +1,142 @@
+{
+  "navigation": {
+    "home": "Home",
+    "manifesto": "Manifesto",
+    "gallery": "Gallery",
+    "analytics": "Analytics",
+    "testimonials": "Testimonials",
+    "register": "Register",
+    "about": "About Us"
+  },
+  "hero": {
+    "title": "Welcome to",
+    "subtitle": "The Leading Community that Unites YOUR Human Potential with Artificial Intelligence",
+    "cta": "Get Started"
+  },
+  "manifesto": {
+    "title": "Ivoka Manifesto",
+    "lema": "The Leading Community that Unites YOUR Human Potential with Artificial Intelligence.",
+    "introduccion": {
+      "title": "Introduction: A New Beginning for You and Technology",
+      "content": "Imagine a place where the world's most advanced technology is not a threat, but your best ally for growth. A space where you not only learn to handle artificial intelligence tools, but in the process, you rediscover the power of your own voice, put your finances in order, and become a more complete and authentic version of yourself.\n\nThat place is not a utopia. That is Ivoka.\n\nWe are a vibrant, practical, and hopeful community, designed for people like you, who sense that the future is not about choosing between technology and humanity, but about integrating them. But Ivoka is more than a community: it's the place where you'll find your tribe. Here, learning intertwines with strengthening your most human skills. It's not just a course; it's a path of personal evolution that we walk together, as a family, with real and close support."
+    },
+    "esencia": {
+      "title": "Our Essence and Purpose: The Heart of Ivoka",
+      "vision": {
+        "title": "Our Vision",
+        "content": "We aspire to be the reference meeting point in the Spanish-speaking world where people completely lose their fear of artificial intelligence. We dream of a world where, instead of feeling replaced, you feel deeply empowered, more creative, and more connected to your purpose when using technology as an extension of your potential."
+      },
+      "mision": {
+        "title": "Our Mission",
+        "content": "We offer you a clear and transformative learning path. Through practical courses, carefully selected tools, and challenges designed for action, we turn knowledge into tangible results. What does this mean for you? It means you'll radically improve your communication skills, bring to life projects you currently only imagine, and build basic financial habits that will bring you peace and clarity you never thought possible."
+      },
+      "principios": {
+        "title": "Our Fundamental Principles",
+        "primero_lo_humano": {
+          "title": "First, the Human",
+          "content": "Before exploring any platform, we focus on you: your identity, your unique voice, your values, and your ethics. Technology is a tool at the service of your purpose, never the other way around."
+        },
+        "hacer_es_aprender": {
+          "title": "Doing is the Best Way to Learn",
+          "content": "We believe in the power of action. Forget endless theory. Here you'll dive into guided practice, stimulating challenges, mini-projects, and constructive reviews that will embed learning in your experience."
+        },
+        "familia_acompanante": {
+          "title": "A Family that Accompanies You",
+          "content": "In Ivoka, you won't be alone. More than a network of contacts, here you'll build deep bonds. You'll be part of a family of creators and dreamers, where you'll find friends, future partners, and people who vibrate in the same frequency as you. You'll be a member of an active tribe that celebrates your victories and supports you unconditionally in every challenge."
+        },
+        "simplicidad_aplicada": {
+          "title": "Applied Simplicity",
+          "content": "We translate the complex into simple and applicable concepts from day one. We design each lesson thinking of those taking their first steps or seeking to consolidate their knowledge, eliminating noise and going straight to value."
+        }
+      }
+    },
+    "pilares": {
+      "title": "Our 3 Pillars of Growth: The Trinity of Your Evolution",
+      "descripcion": "Everything in Ivoka is built on three fundamental areas that nourish and empower each other, creating integral and sustainable growth.",
+      "inteligencia_artificial": {
+        "title": "Applied Artificial Intelligence: Creativity and Productivity Without Limits",
+        "content": "We will guide you by the hand into the fascinating universe of AI in a totally practical and demystified way. We won't overwhelm you with technicalities, but we will guide you to master the most innovative platforms and use them to create real impact."
+      },
+      "desarrollo_humano": {
+        "title": "Human Development: Empowering Your Voice and Impact",
+        "content": "The most advanced technology is useless without the human ability to connect. This pillar is dedicated to forming people who express themselves with conviction, manage their emotions, and build stronger and more meaningful relationships."
+      },
+      "finanzas_personales": {
+        "title": "Practical Personal Finances: Order to Advance",
+        "content": "This pillar provides you with the just and necessary tools to take control of your money, eliminating financial stress so you can focus on your growth with total freedom."
+      }
+    },
+    "promesa": {
+      "title": "Our Promise: What Makes Ivoka Unique?",
+      "content": "You Learn by Doing, Not Just by Listening: Every topic includes an applicable challenge. Here, knowledge becomes skill through immediate action."
+    },
+    "cierre": {
+      "title": "An Inspiring Closing: The Future is Human, Powered by AI",
+      "content": "In Ivoka, we don't aspire for you to become a technical expert. Our true objective is much deeper: we want you to recognize yourself using technology as a lever to elevate your voice, to shape your work, and to enrich your life.\n\nHere you will discover that artificial intelligence is not an external force to fear, but an extension of your own creativity and potential. In Ivoka, AI drives you, but it is your humanity—with all its capacity to connect, create, and dream—that will finally make you transcend."
+    }
+  },
+  "gallery": {
+    "title": "Our Gallery",
+    "description": "Explore our collection of innovative projects and creative solutions."
+  },
+  "analytics": {
+    "title": "Analytics Dashboard",
+    "revenue": "Revenue",
+    "users": "Users",
+    "conversion": "Conversion Rate",
+    "performance": "Performance Metrics"
+  },
+  "register": {
+    "title": "Join Ivoka",
+    "subtitle": "Be part of our transformative community",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "company": "Company",
+      "submit": "Register Now",
+      "success": "Registration successful! Welcome to Ivoka.",
+      "error": "Please fill in all required fields."
+    }
+  },
+  "about": {
+    "title": "About Ivoka",
+    "subtitle": "Where Artificial Intelligence Meets Human Potential",
+    "mission": {
+      "title": "Our Mission",
+      "content": "At Ivoka, we're dedicated to creating a vibrant community where artificial intelligence and human development merge to empower personal and professional growth. Our mission is to be the bridge that connects human potential with the most advanced technological tools."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "content": "We envision a world where artificial intelligence doesn't replace humans, but empowers them. A future where each person can access AI tools to amplify their creativity, improve their communication, and achieve their financial goals with greater ease."
+    },
+    "values": {
+      "title": "Our Values",
+      "innovation": "Constantly exploring new frontiers in AI and human development",
+      "creativity": "Fostering authentic expression and innovative solutions",
+      "excellence": "Committed to quality in every aspect of our community",
+      "collaboration": "Creating meaningful connections that empower collective growth"
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "A diverse group of passionate experts in AI, human development, and personal finance"
+    },
+    "history": {
+      "title": "Our Story",
+      "content": "Ivoka was born from the conviction that technology should serve humanity. What started as a small group of visionaries has become a leading community that is transforming how people interact with artificial intelligence in the Spanish-speaking world."
+    }
+  },
+  "footer": {
+    "copyright": "© {{year}} Ivoka. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Try Again",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  }
+}

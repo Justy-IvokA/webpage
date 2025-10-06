@@ -1,0 +1,377 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Modern Negra";
+  src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
+}
+
+@theme {
+  /* Fuentes provistas por next/font */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Colores Primarios - Azul Vibrante Ivoka #0062FF */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-50: oklch(0.95 0.10 254);
+  --color-primary-100: oklch(0.88 0.15 254);
+  --color-primary-200: oklch(0.78 0.20 254);
+  --color-primary-300: oklch(0.68 0.22 254);
+  --color-primary-400: oklch(0.58 0.23 254);
+  --color-primary-500: oklch(0.47 0.23 254);  /* Azul vibrante #0062FF */
+  --color-primary-600: oklch(0.37 0.22 254);
+  --color-primary-700: oklch(0.27 0.20 254);
+  --color-primary-800: oklch(0.20 0.18 254);
+  --color-primary-900: oklch(0.15 0.15 254);
+
+  /* Colores Secundarios - Verde Lima Ivoka #B9CA19 */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-50: oklch(0.96 0.06 90);
+  --color-secondary-100: oklch(0.90 0.08 90);
+  --color-secondary-200: oklch(0.82 0.10 90);
+  --color-secondary-300: oklch(0.78 0.11 90);
+  --color-secondary-400: oklch(0.74 0.12 90);
+  --color-secondary-500: oklch(0.75 0.12 90);  /* Verde lima #B9CA19 */
+  --color-secondary-600: oklch(0.65 0.11 90);
+  --color-secondary-700: oklch(0.55 0.10 90);
+  --color-secondary-800: oklch(0.45 0.09 90);
+  --color-secondary-900: oklch(0.35 0.08 90);
+
+  /* Colores de Acento - Naranja Brillante Ivoka #FE7734 */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-50: oklch(0.95 0.08 35);
+  --color-accent-100: oklch(0.88 0.12 35);
+  --color-accent-200: oklch(0.78 0.16 35);
+  --color-accent-300: oklch(0.70 0.18 35);
+  --color-accent-400: oklch(0.62 0.18 35);
+  --color-accent-500: oklch(0.65 0.18 35);  /* Naranja brillante #FE7734 */
+  --color-accent-600: oklch(0.55 0.17 35);
+  --color-accent-700: oklch(0.45 0.16 35);
+  --color-accent-800: oklch(0.35 0.15 35);
+  --color-accent-900: oklch(0.25 0.14 35);
+
+  /* Colores Destructive - Morado */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-50: oklch(0.95 0.15 280);
+  --color-destructive-100: oklch(0.88 0.18 280);
+  --color-destructive-200: oklch(0.78 0.22 280);
+  --color-destructive-300: oklch(0.68 0.24 280);
+  --color-destructive-400: oklch(0.58 0.25 280);
+  --color-destructive-500: oklch(0.65 0.23 280);  /* Morado medio #7964F2 */
+  --color-destructive-600: oklch(0.55 0.22 280);
+  --color-destructive-700: oklch(0.45 0.20 280);
+  --color-destructive-800: oklch(0.35 0.18 280);
+  --color-destructive-900: oklch(0.25 0.15 280);
+
+  /* Colores Neutros - Basados en Blanco Roto #FFFEF7 y Negro Profundo #1E1F1C */
+  --color-neutral: oklch(0.20 0.01 85);
+  --color-neutral-foreground: oklch(0.98 0.005 85);
+  --color-neutral-50: oklch(0.99 0.005 85);  /* Blanco roto claro #FFFEF7 */
+  --color-neutral-100: oklch(0.97 0.008 85);
+  --color-neutral-200: oklch(0.94 0.01 85);
+  --color-neutral-300: oklch(0.88 0.012 85);
+  --color-neutral-400: oklch(0.75 0.015 85);
+  --color-neutral-500: oklch(0.60 0.018 85);
+  --color-neutral-600: oklch(0.45 0.02 85);
+  --color-neutral-700: oklch(0.35 0.022 85);
+  --color-neutral-800: oklch(0.25 0.025 85);
+  --color-neutral-900: oklch(0.12 0.01 85);  /* Negro profundo #1E1F1C */
+
+  /* Colores Semánticos - Usando colores Ivoka */
+  --color-success: oklch(0.75 0.12 90);  /* Verde lima para éxito */
+  --color-success-foreground: oklch(0.15 0.02 90);
+  --color-warning: oklch(0.65 0.18 35);  /* Naranja para advertencias */
+  --color-warning-foreground: oklch(0.15 0.02 35);
+  --color-error: oklch(0.55 0.15 280);   /* Morado medio para errores */
+  --color-error-foreground: oklch(0.98 0.01 280);
+  --color-info: oklch(0.47 0.23 254);    /* Azul vibrante para info */
+  --color-info-foreground: oklch(0.98 0.01 254);
+
+  /* Colores de Fondo y Texto */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Colores de Gráficos - Usando paleta Ivoka */
+  --color-chart-1: oklch(0.47 0.23 254);  /* Azul vibrante */
+  --color-chart-2: oklch(0.75 0.12 90);   /* Verde lima */
+  --color-chart-3: oklch(0.65 0.18 35);   /* Naranja brillante */
+  --color-chart-4: oklch(0.55 0.15 280);  /* Morado medio */
+  --color-chart-5: oklch(0.60 0.20 180);  /* Azul secundario */
+
+  /* Colores de Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@import "tw-animate-css";
+
+:root {
+  --radius: 0.625rem;
+
+  /* Light Mode - Colores Principales Ivoka */
+  --background: oklch(0.99 0.005 85);  /* Blanco roto #FFFEF7 */
+  --foreground: oklch(0.12 0.01 85);   /* Negro profundo #1E1F1C */
+  --primary: oklch(0.47 0.23 254);     /* Azul vibrante #0062FF */
+  --primary-foreground: oklch(0.99 0.005 85);
+  --secondary: oklch(0.75 0.12 90);    /* Verde lima #B9CA19 */
+  --secondary-foreground: oklch(0.12 0.01 85);
+  --muted: oklch(0.97 0.008 85);
+  --muted-foreground: oklch(0.45 0.02 85);
+  --accent: oklch(0.65 0.18 35);       /* Naranja brillante #FE7734 */
+  --accent-foreground: oklch(0.12 0.01 85);
+
+  /* Light Mode - Colores de Superficie */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.01 85);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.01 85);
+  --border: oklch(0.88 0.012 85);
+  --input: oklch(0.97 0.008 85);
+  --ring: oklch(0.47 0.23 254);
+
+  /* Light Mode - Estados */
+  --destructive: oklch(0.55 0.15 280);  /* Morado medio #7964F2 */
+  --destructive-foreground: oklch(0.99 0.005 85);
+
+  /* Light Mode - Colores de Gráficos */
+  --chart-1: oklch(0.47 0.23 254);  /* Azul vibrante */
+  --chart-2: oklch(0.75 0.12 90);   /* Verde lima */
+  --chart-3: oklch(0.65 0.18 35);   /* Naranja brillante */
+  --chart-4: oklch(0.55 0.15 280);  /* Morado medio */
+  --chart-5: oklch(0.60 0.20 180);  /* Azul secundario */
+
+  /* Light Mode - Sidebar */
+  --sidebar: oklch(0.98 0.005 85);
+  --sidebar-foreground: oklch(0.12 0.01 85);
+  --sidebar-primary: oklch(0.47 0.23 254);
+  --sidebar-primary-foreground: oklch(0.99 0.005 85);
+  --sidebar-accent: oklch(0.75 0.12 90);
+  --sidebar-accent-foreground: oklch(0.12 0.01 85);
+  --sidebar-border: oklch(0.88 0.012 85);
+  --sidebar-ring: oklch(0.47 0.23 254);
+}
+
+.dark {
+  /* Dark Mode - Colores Principales Ivoka */
+  --background: oklch(0.12 0.01 85);   /* Negro profundo #1E1F1C */
+  --foreground: oklch(0.95 0.005 85);  /* Blanco roto #FFFEF7 */
+  --primary: oklch(0.55 0.20 254);     /* Azul vibrante más claro para dark */
+  --primary-foreground: oklch(0.12 0.01 85);
+  --secondary: oklch(0.80 0.10 90);    /* Verde lima más claro para dark */
+  --secondary-foreground: oklch(0.12 0.01 85);
+  --muted: oklch(0.20 0.02 85);
+  --muted-foreground: oklch(0.70 0.01 85);
+  --accent: oklch(0.70 0.16 35);       /* Naranja más claro para dark */
+  --accent-foreground: oklch(0.12 0.01 85);
+
+  /* Dark Mode - Colores de Superficie */
+  --card: oklch(0.15 0.02 85);
+  --card-foreground: oklch(0.95 0.005 85);
+  --popover: oklch(0.15 0.02 85);
+  --popover-foreground: oklch(0.95 0.005 85);
+  --border: oklch(0.25 0.025 85);
+  --input: oklch(0.20 0.02 85);
+  --ring: oklch(0.55 0.20 254);
+
+  /* Dark Mode - Estados */
+  --destructive: oklch(0.60 0.12 280);  /* Morado más claro para dark */
+  --destructive-foreground: oklch(0.12 0.01 85);
+
+  /* Dark Mode - Colores de Gráficos */
+  --chart-1: oklch(0.55 0.20 254);  /* Azul vibrante para dark */
+  --chart-2: oklch(0.80 0.10 90);   /* Verde lima para dark */
+  --chart-3: oklch(0.70 0.16 35);   /* Naranja brillante para dark */
+  --chart-4: oklch(0.60 0.12 280);  /* Morado medio para dark */
+  --chart-5: oklch(0.65 0.18 180);  /* Azul secundario para dark */
+
+  /* Dark Mode - Sidebar */
+  --sidebar: oklch(0.15 0.02 85);
+  --sidebar-foreground: oklch(0.95 0.005 85);
+  --sidebar-primary: oklch(0.55 0.20 254);
+  --sidebar-primary-foreground: oklch(0.12 0.01 85);
+  --sidebar-accent: oklch(0.80 0.10 90);
+  --sidebar-accent-foreground: oklch(0.12 0.01 85);
+  --sidebar-border: oklch(0.25 0.025 85);
+  --sidebar-ring: oklch(0.55 0.20 254);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  .flex-end {
+    @apply flex items-center justify-end;
+  }
+  .flex-start {
+    @apply flex items-center justify-start;
+  }
+  .col-center {
+    @apply flex flex-col items-center justify-center;
+  }
+  .col-between {
+    @apply flex flex-col items-center justify-between;
+  }
+  .col-end {
+    @apply flex flex-col items-center justify-end;
+  }
+  .col-start {
+    @apply flex flex-col items-center justify-start;
+  }
+  .abs-center {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .abs-end {
+    @apply absolute top-1/2 right-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .abs-start {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .abs-between {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .abs-start {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .text-gradient {
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .radial-gradient {
+    background: radial-gradient(circle at center, var(--secondary) 0%, #000 50%, transparent 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .radgrad1 {
+    background: radial-gradient(ellipse at top left, var(--color-neutral-900), var(--color-primary-900), var(--color-primary-600));
+  }
+  .radgrad2 {
+    background: radial-gradient(125% 125% at 50% 100%, var(--color-neutral-900) 40%, var(--color-primary-900) 100%);
+  }
+  .radgrad3 {
+    background: radial-gradient(125% 125% at 50% 90%, var(--color-neutral-900) 40%, var(--color-primary-900) 100%);
+  }
+  .masked-img {
+    mask-image: url("/public/Poster_1080x1080.jpg");
+    -webkit-mask-image: url("/public/Poster_1080x1080.jpg");
+    mask-size: 50%;
+    -webkit-mask-size: 50%;
+    mask-position: center;
+    -webkit-mask-position: center;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+  }
+}
+
+.glitch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2.5rem, 4vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: auto;
+  width: auto;
+}
+
+.glitch.top {
+  clip-path: inset(0 0 45% 0);
+}
+
+.glitch.bottom {
+  clip-path: inset(55% 0 0 0);
+}
+
+.redShadow {
+  text-shadow: -3px 0 #ff0040;
+}
+
+.greenShadow {
+  text-shadow: 3px 0 #00ff85;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration, 30s) linear infinite;
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+}
