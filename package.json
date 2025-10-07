@@ -9,10 +9,6 @@
     "export": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:push": "prisma db push",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset",
     "clean": "rm -rf .next node_modules/.cache",
     "reinstall": "rm -rf node_modules package-lock.json && npm install"
   },
