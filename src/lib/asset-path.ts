@@ -13,13 +13,17 @@
  * 
  * Este helper debe usarse para esos casos
  */
+
+// Detectar si estamos en producción basándonos en la URL actual
+const isProduction = typeof window !== 'undefined' 
+  ? window.location.hostname === 'justy-ivoka.github.io'
+  : process.env.NODE_ENV === 'production';
+
+const BASE_PATH = isProduction ? '/webpage' : '';
+
 export function assetPath(path: string): string {
-  // En desarrollo, no hay basePath
-  // En producción (build), usamos el basePath de next.config.ts
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  
   // Asegurarse de que el path comience con /
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   
-  return `${basePath}${normalizedPath}`;
+  return `${BASE_PATH}${normalizedPath}`;
 }
