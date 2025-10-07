@@ -125,7 +125,7 @@ export default function Home() {
               </h1> */}
               <img
                 ref={logoRef}
-                src={assetPath("/Ivokalogo@2x.png")}
+                src={assetPath("/ivokalogo@2x.png")}
                 alt="LogoBase"
                 width={500}
                 height={250}
