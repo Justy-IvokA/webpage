@@ -21,7 +21,7 @@ export interface AppState {
   addRegistration: (registration: Omit<EmailRegistration, 'id' | 'timestamp'>) => void;
   removeRegistration: (id: string) => void;
   clearRegistrations: () => void;
-  exportRegistrations: () => string;
+  exportRegistrations: () => Promise<string>;
   setAnimationsEnabled: (enabled: boolean) => void;
   setTheme: (theme: 'light' | 'dark') => void;
   setHasRegistered: (registered: boolean) => void;
