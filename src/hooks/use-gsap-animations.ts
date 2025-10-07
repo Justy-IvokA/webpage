@@ -266,13 +266,14 @@ export const useGsapAnimations = () => {
           paused: true,
           repeat: -1,
           onRepeat() {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            this._time === this._dur && (this._tTime += this._dur - 0.01);
+            // @ts-expect-error - GSAP internal properties
+            if (this._time === this._dur) {
+              // @ts-expect-error - GSAP internal properties
+              this._tTime += this._dur - 0.01;
+            }
           },
           onReverseComplete() {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
+            // @ts-expect-error - GSAP internal properties
             this.totalTime(this.rawTime() + this.duration() * 100);
           },
         });
