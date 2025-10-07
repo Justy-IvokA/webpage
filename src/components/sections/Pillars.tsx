@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { assetPath } from '@/lib/asset-path';
 import { CpuChipIcon, HeartIcon, ChartBarIcon } from '@/components/icons';
 
 interface Pillar {
@@ -19,7 +20,7 @@ const pillarsData: Pillar[] = [
     icon: <CpuChipIcon />,
     title: 'Inteligencia Artificial Aplicada',
     description: 'Domina las plataformas más innovadoras para crear contenido, diseños, audio y video con un impacto real. Transforma ideas en proyectos tangibles.',
-    image: '/images/ia.png',
+    image: '/ia.png',
     gradientFrom: 'from-cyan-500/90',
     gradientTo: 'to-blue-600/90',
     accentColor: 'cyan',
@@ -28,7 +29,7 @@ const pillarsData: Pillar[] = [
     icon: <HeartIcon />,
     title: 'Desarrollo Humano',
     description: 'Potencia tu voz, aprende a contar historias que inspiran y construye relaciones más fuertes. Conviértete en un comunicador seguro y eficaz.',
-    image: '/images/dp.png',
+    image: '/dp.png',
     gradientFrom: 'from-pink-500/90',
     gradientTo: 'to-rose-600/90',
     accentColor: 'pink',
@@ -37,7 +38,7 @@ const pillarsData: Pillar[] = [
     icon: <ChartBarIcon />,
     title: 'Finanzas Personales Prácticas',
     description: 'Toma el control de tu dinero con herramientas sencillas para eliminar el estrés financiero y construir una base sólida para tu futuro.',
-    image: '/images/fp.jpg',
+    image: '/fp.jpg',
     gradientFrom: 'from-emerald-500/90',
     gradientTo: 'to-green-600/90',
     accentColor: 'emerald',
@@ -63,7 +64,7 @@ function PillarCard({ pillar, index }: PillarCardProps) {
       <div className="absolute inset-0 overflow-hidden">
         <div className="pillar-image-wrapper w-full h-full transition-transform duration-700 group-hover:scale-110">
           <Image
-            src={pillar.image}
+            src={assetPath(pillar.image)}
             alt={pillar.title}
             fill
             className="object-cover"
