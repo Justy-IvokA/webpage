@@ -1,25 +1,23 @@
 'use client';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Navbar } from '@/components/shared/navbar';
 import { Footer } from '@/components/shared/footer';
-import { Section, SectionHeader } from '@/components/shared/section';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { MotionCard, StaggerContainer, StaggerItem, GlowOnHover, Floating } from '@/components/shared/motion-wrapper';
 import { useTranslation } from 'react-i18next';
 import VideoScrollSection from '@/components/VideoScrollSection';
-import Team from '@/components/Team';
-import Pillars from '@/components/Pillars';
+import Team from '@/components/sections/Team';
+import Pillars from '@/components/sections/Pillars';
 import CTAWithVerticalMarquee from "@/components/CTAWithVerticalMarquee";
 import { CircuitBackground } from '@/components/Background-paths';
-import Register from '@/components/Register';
+import Register from '@/components/sections/Register';
 import { Testimonials } from '@/components/testimonial';
-import { About } from '@/components/About';
-import { Price } from '@/components/Price';
+import { About } from '@/components/sections/About';
+import { Price } from '@/components/sections/Price';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -29,6 +27,7 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const pillarsRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
+  const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
 
   // Video controls
   const toggleVideoPlay = () => {
@@ -51,11 +50,20 @@ export default function Home() {
 
   // Scroll to content
   const scrollToContent = () => {
-    const contentSection = document.getElementById('features');
+    const contentSection = document.getElementById('manifiesto');
     if (contentSection) {
       contentSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Rotación de pilares
+  useEffect(() => {
+    const pillars = ['ai', 'humanDev', 'finance'];
+    const interval = setInterval(() => {
+      setCurrentPillarIndex((prev) => (prev + 1) % pillars.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   useGSAP(() => {
     if (!logoRef.current) return;
@@ -109,7 +117,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 0.8 }}
             >
               {/* <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span className="block">{t('hero.title')}</span>
@@ -122,45 +130,127 @@ export default function Home() {
                 height={250}
                 className="ml-2 md:ml-10 inline-block h-auto"
               />
+            </motion.div>
               
-              <p className="absolute bottom-10 text-xl md:text-2xl mb-8 text-white/90 left-1/2 transform -translate-x-1/2">
-                {t('manifesto.lema')}
-              </p>
+            {/* Slogan con texto rotativo */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="absolute bottom-6 md:bottom-14 left-1/2 -translate-x-1/2 z-20 w-[90%] md:w-auto max-w-5xl"
+            >
+              <div className="relative overflow-hidden bg-gradient-to-r from-primary-600/20 via-accent-500/25 to-[#7964F2]/20 backdrop-blur-md border border-white/20 rounded-2xl px-4 md:px-6 py-3 md:py-4 shadow-2xl">
+                {/* Efecto de brillo animado */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{
+                    x: ['-100%', '100%'],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  }}
+                />
+                
+                {/* Texto con parte rotativa */}
+                <div className="relative flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm md:text-base lg:text-xl text-white text-center">
+                  <span className="font-bold drop-shadow-lg">{t('hero.sloganBase')}</span>
+                  
+                  <div className="inline-flex items-center gap-2">
+                    <motion.div
+                      className="w-2 h-2 rounded-full bg-gradient-to-r from-[#B9CA19] to-[#FE7734] shadow-lg shadow-accent-500/50"
+                      animate={{
+                        scale: [1, 1.4, 1],
+                        opacity: [0.8, 1, 0.8],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                    />
+                    
+                    <motion.span
+                      key={currentPillarIndex}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.5 }}
+                      className="font-bold bg-gradient-to-r from-[#B9CA19] via-[#FE7734] to-[#7964F2] bg-clip-text text-transparent drop-shadow-2xl whitespace-nowrap"
+                      style={{
+                        filter: 'drop-shadow(0 0 8px rgba(185, 202, 25, 0.5))',
+                      }}
+                    >
+                      {t(`hero.pillarsMarquee.${['ai', 'humanDev', 'finance'][currentPillarIndex]}`)}
+                    </motion.span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <GlowOnHover>
+                {/* <GlowOnHover>
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-primary/90 hover:to-brand-secondary/90 text-white text-lg px-8 py-4"
+                    className="hidden md:block bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-600/90 hover:to-accent-600/90 text-white text-lg px-8 py-4"
                     onClick={() => {
                       const registrationSection = document.getElementById('manifiesto');
                       if (registrationSection) {
                         registrationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
-                  >
-                    Comenzar Ahora
-                  </Button>
-                </GlowOnHover>
+                </GlowOnHover> */}
                 
                 <motion.div
+                  className="relative group"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
+                  {/* Efecto de resplandor animado de fondo */}
+                  <motion.div
+                    className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-accent-600 to-[#7964F2] rounded-lg blur-lg opacity-75 group-hover:opacity-100"
+                    animate={{
+                      backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'linear',
+                    }}
+                    style={{
+                      backgroundSize: '200% 200%',
+                    }}
+                  />
+                  
+                  {/* Botón principal */}
                   <Button
                     variant="outline"
-                    size="lg"
-                    className="border-white text-white hover:bg-white hover:text-brand-primary text-lg px-8 py-4"
+                    size="sm"
+                    className="relative border-2 border-white/80 text-white bg-black/40 backdrop-blur-sm hover:bg-gradient-to-r hover:from-primary-400 hover:to-destructive-700 hover:border-transparent text-lg px-10 py-6 font-semibold transition-all duration-300 group-hover:shadow-2xl"
                     onClick={scrollToContent}
                   >
-                    Explorar Más
+                    <span className="relative z-10 flex items-center gap-2">
+                      Explorar Más
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.span>
+                    </span>
                   </Button>
                 </motion.div>
               </div>
             </motion.div>
           </div>
         </div>
-
         {/* Video Controls */}
         <div className="absolute bottom-8 right-8 flex gap-2 z-20">
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -209,16 +299,15 @@ export default function Home() {
             <div className="bg-element absolute bottom-40 right-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
             <div className="bg-element absolute top-1/2 left-1/3 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />
           </div>
-          <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #06b6d4 1px, transparent 1px),
-            linear-gradient(to bottom, #06b6d4 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-        }}
-      />
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, #06b6d4 1px, transparent 1px),
+                linear-gradient(to bottom, #06b6d4 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px',
+            }}
+          />
           <CTAWithVerticalMarquee />
         </CircuitBackground>
       </section>

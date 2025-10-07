@@ -1,5 +1,4 @@
 import React from 'react';
-
 const iconProps = {
     className: "w-8 h-8",
     strokeWidth: 1.5,
@@ -7,9 +6,18 @@ const iconProps = {
 
 export const CpuChipIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" {...iconProps}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M15.75 3v1.5M15.75 21v-1.5M12 4.5v-1.5m0 18v-1.5" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75h6l-3 3-3-3z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 9.75V7.5a3 3 0 00-3-3h-3a3 3 0 00-3 3v2.25m10.5 0V16.5a3 3 0 01-3 3h-3a3 3 0 01-3-3V9.75" />
+        {/* Pines superiores */}
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 4.5v2M12 4.5v2M15 4.5v2" />
+        {/* Pines inferiores */}
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.5v2M12 17.5v2M15 17.5v2" />
+        {/* Pines izquierdos */}
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 9h2M4.5 12h2M4.5 15h2" />
+        {/* Pines derechos */}
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.5 9h2M17.5 12h2M17.5 15h2" />
+        {/* Cuerpo del chip */}
+        <rect x="6.5" y="6.5" width="11" height="11" rx="2" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Núcleo interno */}
+        <rect x="9.5" y="9.5" width="5" height="5" rx="1" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
 

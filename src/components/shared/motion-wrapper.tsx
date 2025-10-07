@@ -241,13 +241,14 @@ export function StaggerItem({
 export function GlowOnHover({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <motion.div
-      className={className}
+      className={`${className} relative`}
       whileHover={{ 
         scale: 1.05,
-        boxShadow: '0 0 20px rgba(0, 98, 255, 0.3)',
+        filter: 'brightness(1.1)',
+        boxShadow: '0 0 30px rgba(0, 98, 255, 0.6), 0 0 60px rgba(0, 98, 255, 0.4), 0 0 90px rgba(0, 98, 255, 0.2)',
       }}
       whileTap={{ scale: 0.95 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       {children}
     </motion.div>

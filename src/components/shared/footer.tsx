@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Github, Heart, Sparkles, Zap, Users } from 'lucide-react';
 import Link from 'next/link';
@@ -21,55 +22,67 @@ export function Footer({ animated = true, showStats = true }: { animated?: boole
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
-  const footerSections = [
-    {
-      title: 'Empresa',
-      links: [
-        { label: t('navigation.about'), href: '/about' },
-        { label: 'Nuestro Equipo', href: '/equipo' },
-        { label: 'Carreras', href: '/carreras' },
-        { label: 'Prensa', href: '/prensa' },
-      ],
-    },
-    {
-      title: 'Recursos',
-      links: [
-        { label: 'Blog', href: '/blog' },
-        { label: 'Documentación', href: '/docs' },
-        { label: 'API', href: '/api' },
-        { label: 'Soporte', href: '/soporte' },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { label: t('footer.terms'), href: '/terminos' },
-        { label: t('footer.privacy'), href: '/privacidad' },
-        { label: 'Política de Cookies', href: '/cookies' },
-        { label: 'Aviso Legal', href: '/aviso-legal' },
-      ],
-    },
-  ];
+  const footerSections = useMemo(
+    () => [
+      {
+        title: t('footer.sections.company.title'),
+        links: [
+          { label: t('footer.sections.company.links.about'), href: '/about' },
+          { label: t('footer.sections.company.links.team'), href: '/equipo' },
+          { label: t('footer.sections.company.links.careers'), href: '/carreras' },
+          { label: t('footer.sections.company.links.press'), href: '/prensa' },
+        ],
+      },
+      {
+        title: t('footer.sections.resources.title'),
+        links: [
+          { label: t('footer.sections.resources.links.blog'), href: '/blog' },
+          { label: t('footer.sections.resources.links.docs'), href: '/docs' },
+          { label: t('footer.sections.resources.links.api'), href: '/api' },
+          { label: t('footer.sections.resources.links.support'), href: '/soporte' },
+        ],
+      },
+      {
+        title: t('footer.sections.legal.title'),
+        links: [
+          { label: t('footer.sections.legal.links.terms'), href: '/terminos' },
+          { label: t('footer.sections.legal.links.privacy'), href: '/privacidad' },
+          { label: t('footer.sections.legal.links.cookies'), href: '/cookies' },
+          { label: t('footer.sections.legal.links.legalNotice'), href: '/aviso-legal' },
+        ],
+      },
+    ],
+    [t],
+  );
 
-  const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/61581741661653/', label: 'Facebook', color: '#0062FF' },
-    // { icon: XIcon, href: 'https://x.com', label: 'X', color: '#7964F2' },
-    { icon: Instagram, href: 'https://instagram.com/ivokamx', label: 'Instagram', color: '#FE7734' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn', color: '#B9CA19' },
-    // { icon: Github, href: 'https://github.com', label: 'GitHub', color: '#FFFEF7' },
-  ];
+  const socialLinks = useMemo(
+    () => [
+      { icon: Facebook, href: 'https://www.facebook.com/61581741661653/', label: t('footer.social.facebook'), color: '#0062FF' },
+      // { icon: XIcon, href: 'https://x.com', label: 'X', color: '#7964F2' },
+      { icon: Instagram, href: 'https://instagram.com/ivokamx', label: t('footer.social.instagram'), color: '#FE7734' },
+      { icon: Linkedin, href: 'https://linkedin.com', label: t('footer.social.linkedin'), color: '#B9CA19' },
+      // { icon: Github, href: 'https://github.com', label: 'GitHub', color: '#FFFEF7' },
+    ],
+    [t],
+  );
 
-  const contactInfo = [
-    { icon: Mail, text: 'info@ivoka.ai', href: 'mailto:info@ivoka.ai', color: '#0062FF' },
-    { icon: Phone, text: '+52 221 352 8341', href: 'tel:+522213528341', color: '#B9CA19' },
-    { icon: MapPin, text: 'Puebla, México', href: 'https://maps.google.com', color: '#FE7734' },
-  ];
+  const contactInfo = useMemo(
+    () => [
+      { icon: Mail, text: t('navbar.topBar.email'), href: 'mailto:info@ivoka.ai', color: '#0062FF' },
+      { icon: Phone, text: t('navbar.topBar.phone'), href: 'tel:+522213528341', color: '#B9CA19' },
+      { icon: MapPin, text: t('navbar.topBar.location'), href: 'https://maps.google.com', color: '#FE7734' },
+    ],
+    [t],
+  );
 
-  const stats = [
-    { icon: Users, value: '10K+', label: 'Miembros Activos', color: '#0062FF' },
-    { icon: Sparkles, value: '500+', label: 'Proyectos Creados', color: '#B9CA19' },
-    { icon: Zap, value: '98%', label: 'Satisfacción', color: '#FE7734' },
-  ];
+  const stats = useMemo(
+    () => [
+      { icon: Users, value: '10K+', label: t('footer.stats.members'), color: '#0062FF' },
+      { icon: Sparkles, value: '500+', label: t('footer.stats.projects'), color: '#B9CA19' },
+      { icon: Zap, value: '98%', label: t('footer.stats.satisfaction'), color: '#FE7734' },
+    ],
+    [t],
+  );
 
   return (
     <footer id="footer" className="relative w-full mt-auto overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-[#FFFEF7]">
@@ -112,9 +125,8 @@ export function Footer({ animated = true, showStats = true }: { animated?: boole
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
                   className="text-center group"
                 >
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm border border-white/10 mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -137,18 +149,16 @@ export function Footer({ animated = true, showStats = true }: { animated?: boole
           {/* Brand Section - Spans 2 columns on large screens */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
             className="lg:col-span-2"
           >
             <div className="mb-6">
-                <img src="/Ivoka-White@2x.png" alt="Ivoka Logo" className="h-8 w-auto mb-4" />
+              <img src="/Ivoka-White@2x.png" alt={t('footer.brand.logoAlt')} className="h-8 w-auto mb-4" />
             </div>
-              <p className="text-[#FFFEF7]/70 text-sm leading-relaxed max-w-sm mb-2">
-                La comunidad líder que une TU potencial humano con inteligencia artificial. 
-                Transforma tu futuro con nosotros.
-              </p>
+            <p className="text-[#FFFEF7]/70 text-sm leading-relaxed max-w-sm mb-2">
+              {t('footer.brand.description')}
+            </p>
             {/* Contact Info with enhanced styling */}
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
@@ -179,9 +189,8 @@ export function Footer({ animated = true, showStats = true }: { animated?: boole
             <motion.div
               key={section.title}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              viewport={{ once: true }}
             >
               <h4 className="text-lg font-bold mb-6 text-[#FFFEF7] relative inline-block">
                 {section.title}
@@ -207,22 +216,21 @@ export function Footer({ animated = true, showStats = true }: { animated?: boole
         {/* Bottom Section with enhanced design */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true }}
           className="border-t border-[#FFFEF7]/10 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Copyright with enhanced styling */}
             <div className="flex flex-col md:flex-row items-center gap-2 text-sm text-[#FFFEF7]/50">
-              <span className="flex items-center gap-2">
-                © {currentYear} Ivoka
-                <span className="hidden md:inline">•</span>
+              <span className="flex items-center gap-2 text-center md:text-left">
+                {t('footer.copyright', { year: currentYear })}
               </span>
+              <span className="hidden md:inline text-[#FFFEF7]/50">•</span>
               <span className="flex items-center gap-2">
-                Hecho con 
+                {t('footer.bottom.madeWith')}
                 <Heart className="h-3.5 w-3.5 text-[#FE7734] fill-current animate-pulse" />
-                por nuestra comunidad
+                {t('footer.bottom.byCommunity')}
               </span>
             </div>
 

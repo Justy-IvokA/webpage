@@ -3,6 +3,7 @@
 import { JSX, ReactNode } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface FloatingPathsProps {
   position: number
@@ -10,6 +11,13 @@ interface FloatingPathsProps {
 }
 
 function FloatingPaths({ position, colorMode = "grayscale" }: FloatingPathsProps): JSX.Element {
+  const isMobile = useIsMobile()
+  const pathCount = isMobile ? 48 : 36
+  const horizontalMultiplier = isMobile ? 1.6 : 1
+  const verticalMultiplier = isMobile ? 2.1 : 1
+  const viewBox = isMobile ? "-900 -900 1800 2200" : "-600 -450 1200 1150"
+  const preserveAspectRatio = isMobile ? "xMidYMid slice" : "xMidYMid meet"
+
   // Colores de paleta Ivoka
   const paletteColors = [
     "oklch(0.47 0.23 254)", // Azul vibrante #0062FF
@@ -18,9 +26,9 @@ function FloatingPaths({ position, colorMode = "grayscale" }: FloatingPathsProps
     "oklch(0.55 0.15 280)", // Morado medio #7964F2
   ]
 
-  const paths = Array.from({ length: 36 }, (_, index) => {
-    const offset = index * 5 * position
-    const vertical = index * 6
+  const paths = Array.from({ length: pathCount }, (_, index) => {
+    const offset = index * 5 * position * horizontalMultiplier
+    const vertical = index * 6 * verticalMultiplier
 
     // Asignar color según modo
     const color = colorMode === "palette" 
@@ -39,7 +47,8 @@ function FloatingPaths({ position, colorMode = "grayscale" }: FloatingPathsProps
     <div className="pointer-events-none absolute inset-0">
       <svg
         className="h-full w-full text-slate-950 dark:text-white"
-        viewBox="0 0 696 316"
+        viewBox={viewBox}
+        preserveAspectRatio={preserveAspectRatio}
         fill="none"
       >
         <title>Background Paths</title>
@@ -85,6 +94,8 @@ interface CircuitPathsProps {
 }
 
 function CircuitPaths({ position, colorMode = "grayscale" }: CircuitPathsProps): JSX.Element {
+  const isMobile = useIsMobile()
+  
   // Colores de paleta Ivoka
   const paletteColors = [
     "oklch(0.47 0.23 254)", // Azul vibrante #0062FF
@@ -92,6 +103,11 @@ function CircuitPaths({ position, colorMode = "grayscale" }: CircuitPathsProps):
     "oklch(0.65 0.18 35)",  // Naranja brillante #FE7734
     "oklch(0.55 0.15 280)", // Morado medio #7964F2
   ]
+
+  // Dimensiones adaptativas según dispositivo
+  const viewBoxWidth = isMobile ? 375 : 696
+  const viewBoxHeight = isMobile ? 812 : 316
+  const viewBox = `0 0 ${viewBoxWidth} ${viewBoxHeight}`
 
   // Generar 3 clusters de circuitos
   const clusters = Array.from({ length: 3 }, (_, clusterIndex) => {
@@ -178,15 +194,23 @@ function CircuitPaths({ position, colorMode = "grayscale" }: CircuitPathsProps):
     
     // Generar múltiples posiciones para el cluster (áreas más amplias que se superponen)
     const generateRandomPosition = () => {
-      // Áreas más grandes y superpuestas para intersección natural
-      const areas = [
-        { x: [0, 300], y: [0, 180] },     // Superior izquierda amplia
-        { x: [350, 696], y: [0, 180] },   // Superior derecha amplia
-        { x: [0, 300], y: [150, 316] },   // Inferior izquierda amplia
-        { x: [350, 696], y: [150, 316] }, // Inferior derecha amplia
-        { x: [200, 500], y: [80, 240] },  // Centro amplio
-        { x: [100, 400], y: [50, 200] },  // Centro-izquierda
-        { x: [300, 600], y: [100, 250] }, // Centro-derecha
+      // Áreas adaptativas según dispositivo
+      const areas = isMobile ? [
+        { x: [0, 150], y: [0, 270] },      // Superior izquierda
+        { x: [225, 375], y: [0, 270] },    // Superior derecha
+        { x: [0, 150], y: [270, 542] },    // Centro izquierda
+        { x: [225, 375], y: [270, 542] },  // Centro derecha
+        { x: [0, 150], y: [542, 812] },    // Inferior izquierda
+        { x: [225, 375], y: [542, 812] },  // Inferior derecha
+        { x: [75, 300], y: [135, 677] },   // Centro amplio vertical
+      ] : [
+        { x: [0, 300], y: [0, 180] },      // Superior izquierda amplia
+        { x: [350, 696], y: [0, 180] },    // Superior derecha amplia
+        { x: [0, 300], y: [150, 316] },    // Inferior izquierda amplia
+        { x: [350, 696], y: [150, 316] },  // Inferior derecha amplia
+        { x: [200, 500], y: [80, 240] },   // Centro amplio
+        { x: [100, 400], y: [50, 200] },   // Centro-izquierda
+        { x: [300, 600], y: [100, 250] },  // Centro-derecha
       ]
       
       const area = areas[Math.floor(Math.random() * areas.length)]
@@ -207,7 +231,7 @@ function CircuitPaths({ position, colorMode = "grayscale" }: CircuitPathsProps):
     <div className="pointer-events-none absolute inset-0">
       <svg
         className="h-full w-full text-slate-950 dark:text-white bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
-        viewBox="0 0 696 316"
+        viewBox={viewBox}
         fill="none"
       >
         <title>Circuit Paths</title>
@@ -226,7 +250,15 @@ function CircuitPaths({ position, colorMode = "grayscale" }: CircuitPathsProps):
           // Generar nuevas posiciones para el ciclo (áreas superpuestas)
           const getRandomPositions = () => {
             const positions: Array<{ x: number; y: number }> = []
-            const areas = [
+            const areas = isMobile ? [
+              { x: [0, 150], y: [0, 270] },
+              { x: [225, 375], y: [0, 270] },
+              { x: [0, 150], y: [270, 542] },
+              { x: [225, 375], y: [270, 542] },
+              { x: [0, 150], y: [542, 812] },
+              { x: [225, 375], y: [542, 812] },
+              { x: [75, 300], y: [135, 677] },
+            ] : [
               { x: [0, 300], y: [0, 180] },
               { x: [350, 696], y: [0, 180] },
               { x: [0, 300], y: [150, 316] },

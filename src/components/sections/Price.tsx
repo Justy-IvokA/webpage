@@ -146,16 +146,14 @@ export function Price({ animated = true, founder = false }: { animated?: boolean
         <div className="mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             className="mb-4 bg-gradient-to-r from-accent-400 via-primary-400 to-destructive-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
           >
             Invierte en Tu Futuro
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="mx-auto max-w-3xl text-lg leading-relaxed text-neutral-300 md:text-xl"
           >
@@ -167,8 +165,7 @@ export function Price({ animated = true, founder = false }: { animated?: boolean
         {!founder && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="mb-8 flex justify-center"
           >
@@ -217,8 +214,7 @@ export function Price({ animated = true, founder = false }: { animated?: boolean
         {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 }}
             className="mb-12 flex items-center justify-center gap-4"
           >
@@ -444,8 +440,7 @@ export function Price({ animated = true, founder = false }: { animated?: boolean
         {/* Footer Note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="mt-16 text-center"
         >

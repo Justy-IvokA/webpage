@@ -1,7 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import type { MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, Palette, Mail, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -27,22 +28,28 @@ export function Navbar({ className = '' }: NavbarProps) {
   const systemTheme = useSystemTheme();
   const { t } = useTranslation();
 
-  const navLinks = [
-    { id: 'home', href: '#', label: t('navigation.home') },
-    { id: 'features', href: '#features', label: t('navigation.features') },
-    { id: 'pillars', href: '#pillars', label: 'Pilares' },
-    { id: 'team', href: '#equipo', label: 'Equipo' },
-    { id: 'about', href: '#acerca-de', label: t('navigation.about') },
-    { id: 'testimonials', href: '#testimonials', label: t('navigation.testimonials') },
-    { id: 'pricing', href: '#pricing', label: t('navigation.pricing') },
-    { id: 'register', href: '#registro', label: t('navigation.register') },
-  ];
+  const navLinks = useMemo(
+    () => [
+      { id: 'home', href: '#', label: t('navigation.home') },
+      { id: 'features', href: '#features', label: t('navigation.features') },
+      { id: 'pillars', href: '#pillars', label: t('navigation.pillars') },
+      { id: 'team', href: '#equipo', label: t('navigation.team') },
+      { id: 'about', href: '#acerca-de', label: t('navigation.about') },
+      { id: 'testimonials', href: '#testimonials', label: t('navigation.testimonials') },
+      { id: 'pricing', href: '#pricing', label: t('navigation.pricing') },
+      { id: 'register', href: '#registro', label: t('navigation.register') },
+    ],
+    [t],
+  );
 
-  const contactInfo = [
-    { icon: Mail, text: 'info@ivoka.ai' },
-    { icon: Phone, text: '+52 221 352 8341' },
-    { icon: MapPin, text: 'Puebla, México' },
-  ];
+  const contactInfo = useMemo(
+    () => [
+      { icon: Mail, text: t('navbar.topBar.email') },
+      { icon: Phone, text: t('navbar.topBar.phone') },
+      { icon: MapPin, text: t('navbar.topBar.location') },
+    ],
+    [t],
+  );
 
   // Handle scroll effects
   // useEffect(() => {
@@ -230,22 +237,35 @@ export function Navbar({ className = '' }: NavbarProps) {
   };
 
   // Handle navigation click with smooth scroll
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
     setActiveSection(href);
-    handleMobileMenuClose();
-    
-    // Scroll to section
-    if (href === '#') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const targetId = href.replace('#', '');
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        const offsetTop = targetElement.offsetTop - 80; // Offset for navbar height
-        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+
+    const performScroll = () => {
+      if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
       }
+
+      const targetId = href.slice(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: Math.max(targetPosition, 0), behavior: 'smooth' });
+        return;
+      }
+
+      window.location.hash = href;
+    };
+
+    if (isMobileMenuOpen) {
+      handleMobileMenuClose();
+      window.setTimeout(performScroll, 320);
+      return;
     }
+
+    performScroll();
   };
 
   return (
@@ -256,7 +276,7 @@ export function Navbar({ className = '' }: NavbarProps) {
         data-navbar
         className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-in-out top-2 sm:top-3 md:top-4 ${className}`}
         role="navigation"
-        aria-label="Navegación principal"
+        aria-label={t('navigation.mainAria')}
       >
         <div className="mx-auto w-full max-w-6xl px-2 sm:px-3 md:px-4 lg:max-w-7xl">
           <div
@@ -358,12 +378,12 @@ export function Navbar({ className = '' }: NavbarProps) {
                 transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="hidden lg:block"
               >
-                <Button
+                {/* <Button
                   className="navbar-cta relative overflow-hidden bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent px-4 py-2 text-xs font-semibold text-white shadow-[0_20px_45px_-18px_rgba(0,98,255,0.75)] transition-all duration-300 xl:px-5 xl:py-2.5 xl:text-sm"
                   onClick={(e: any) => handleNavClick(e, '#registro')}
                 >
                   {t('register.form.submit')}
-                </Button>
+                </Button> */}
               </motion.div>
 
               {/* Mobile Menu Button */}
@@ -377,7 +397,7 @@ export function Navbar({ className = '' }: NavbarProps) {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                  aria-label={isMobileMenuOpen ? t('navbar.mobileMenu.close') : t('navbar.mobileMenu.open')}
                   className="mobile-menu-btn h-9 w-9 rounded-full text-white/90 transition-colors hover:bg-brand-primary/25 hover:text-white"
                 >
                   <motion.div
@@ -402,7 +422,7 @@ export function Navbar({ className = '' }: NavbarProps) {
               animate={{ opacity: 1, y: 0, height: 'auto' }}
               exit={{ opacity: 0, y: -20, height: 0 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:hidden mx-2 mt-2.5 overflow-hidden rounded-2xl border border-white/15 bg-background/95 backdrop-blur-3xl sm:mx-3 md:mx-4"
+              className="lg:hidden mx-2 mt-2.5 overflow-hidden rounded-2xl border border-white/15 bg-[rgba(30,31,28,0.92)] backdrop-blur-3xl sm:mx-3 md:mx-4"
             >
               <div className="px-4 py-4 sm:px-5 sm:py-5">
                 <div className="flex flex-col gap-3">

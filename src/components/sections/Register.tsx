@@ -50,9 +50,8 @@ function BenefitBadge({ benefit, index }: { benefit: BenefitCard; index: number 
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      viewport={{ once: true }}
       className="group relative"
     >
       <div className={`relative p-6 rounded-2xl bg-gradient-to-br ${benefit.gradientFrom} ${benefit.gradientTo} border border-white/10 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-white/30`}>
@@ -181,9 +180,8 @@ export function Register() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400">
@@ -200,9 +198,8 @@ export function Register() {
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
               className="mb-8"
             >
               <h3 className="text-3xl font-bold text-white mb-4">
@@ -221,9 +218,8 @@ export function Register() {
           {/* Right Side - Registration Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
             className="relative"
           >
             <div className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 border border-white/10 backdrop-blur-xl shadow-2xl">

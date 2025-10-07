@@ -2,17 +2,47 @@
   "navigation": {
     "home": "Inicio",
     "features": "Características",
+    "pillars": "Pilares",
+    "team": "Equipo",
     "gallery": "Galería",
     "analytics": "Analítica",
     "testimonials": "Testimonios",
     "register": "Registro",
     "pricing": "Precio",
-    "about": "Nosotros"
+    "about": "Nosotros",
+    "mainAria": "Navegación principal"
+  },
+  "navbar": {
+    "topBar": {
+      "email": "info@ivoka.ai",
+      "phone": "+52 221 352 8341",
+      "location": "Puebla, México"
+    },
+    "actions": {
+      "toggleTheme": {
+        "light": "Activar modo claro",
+        "dark": "Activar modo oscuro"
+      },
+      "toggleAnimations": {
+        "enable": "Activar animaciones",
+        "disable": "Desactivar animaciones"
+      }
+    },
+    "mobileMenu": {
+      "open": "Abrir menú",
+      "close": "Cerrar menú"
+    }
   },
   "hero": {
     "title": "Bienvenido a",
     "subtitle": "La Comunidad líder que une TU potencial humano con inteligencia artificial",
-    "cta": "Comenzar"
+    "cta": "Comenzar",
+    "sloganBase": "La Comunidad líder que une TU potencial con",
+    "pillarsMarquee": {
+      "ai": "inteligencia artificial",
+      "humanDev": "desarrollo personal",
+      "finance": "finanzas personales"
+    }
   },
   "manifesto": {
     "title": "Manifiesto Ivoka",
@@ -127,6 +157,55 @@
     }
   },
   "footer": {
+    "brand": {
+      "logoAlt": "Logo de Ivoka",
+      "description": "La comunidad líder que une TU potencial humano con inteligencia artificial. Transforma tu futuro con nosotros.",
+      "madeWith": "Hecho con",
+      "byCommunity": "por nuestra comunidad"
+    },
+    "sections": {
+      "company": {
+        "title": "Empresa",
+        "links": {
+          "about": "Nosotros",
+          "team": "Nuestro Equipo",
+          "careers": "Carreras",
+          "press": "Prensa"
+        }
+      },
+      "resources": {
+        "title": "Recursos",
+        "links": {
+          "blog": "Blog",
+          "docs": "Documentación",
+          "api": "API",
+          "support": "Soporte"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "terms": "Términos de Servicio",
+          "privacy": "Política de Privacidad",
+          "cookies": "Política de Cookies",
+          "legalNotice": "Aviso Legal"
+        }
+      }
+    },
+    "stats": {
+      "members": "Miembros Activos",
+      "projects": "Proyectos Creados",
+      "satisfaction": "Satisfacción"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn"
+    },
+    "bottom": {
+      "madeWith": "Hecho con",
+      "byCommunity": "por nuestra comunidad"
+    },
     "copyright": "© {{year}} Ivoka. Todos los derechos reservados.",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio"

@@ -65,9 +65,8 @@ export function About() {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-500/10 border border-primary-500/20 mb-6">
@@ -89,9 +88,8 @@ export function About() {
         {/* Story Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
           className="max-w-4xl mx-auto mb-20"
         >
           <div className="relative p-8 md:p-12 rounded-3xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 border border-white/10 backdrop-blur-xl shadow-2xl">
@@ -134,9 +132,8 @@ export function About() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
               className="group relative"
             >
               <div className={`relative p-8 rounded-2xl bg-gradient-to-br ${value.gradientFrom} ${value.gradientTo} border border-white/10 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-white/30 h-full`}>
@@ -164,9 +161,8 @@ export function About() {
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
           className="text-center"
         >
           <p className="text-lg text-neutral-300 mb-6">
