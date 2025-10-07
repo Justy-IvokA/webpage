@@ -37,7 +37,12 @@ function VerticalMarquee({
     <div
       ref={containerRef}
       className={cn("group flex flex-col overflow-hidden", className)}
-      style={{ "--duration": `${speed}s` } as CSSProperties}
+      style={{ 
+        "--duration": `${speed}s`,
+        WebkitOverflowScrolling: "touch",
+        transform: "translateZ(0)",
+        WebkitTransform: "translateZ(0)",
+      } as CSSProperties}
     >
       <div
         className={cn(
@@ -107,10 +112,10 @@ export default function CTAWithVerticalMarquee(): JSX.Element {
   }, []);
 
   return (
-    <div className="text-foreground flex items-center justify-center px-6 py-12 overflow-hidden">
-      <div className="w-full max-w-7xl animate-fade-in-up">
+    <div className="text-foreground flex items-center justify-center px-6 py-12 overflow-hidden" style={{ WebkitOverflowScrolling: "touch" }}>
+      <div className="w-full max-w-7xl animate-fade-in-up" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-stretch">
-          <div className="relative backdrop-blur-2xl bg-white/20 dark:bg-black/30 rounded-2xl shadow-2xl shadow-black/20 p-8 md:p-10 lg:p-12 flex flex-col justify-center space-y-8">
+          <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/20 p-8 md:p-10 lg:p-12 flex flex-col justify-center space-y-8 border border-cyan-500/10">
             <h1 className="relative z-10 text-5xl md:text-6xl lg:text-7xl font-medium leading-tight tracking-tight text-white drop-shadow-lg animate-fade-in-up [animation-delay:200ms]">
               Estás a un "click"
             </h1>
@@ -134,8 +139,8 @@ export default function CTAWithVerticalMarquee(): JSX.Element {
           </motion.div>
 
           </div>
-          <div className="relative backdrop-blur-2xl bg-white/20 dark:bg-black/20 rounded-2xl shadow-2xl shadow-black/20 p-8 md:p-10 lg:p-12 flex items-center justify-center">
-            <div ref={marqueeRef} className="relative w-full h-[500px] lg:h-[600px] overflow-hidden">
+          <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/20 p-8 md:p-10 lg:p-12 flex items-center justify-center border border-cyan-500/10">
+            <div ref={marqueeRef} className="relative w-full h-[500px] lg:h-[600px] overflow-hidden" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
               <VerticalMarquee speed={20} pauseOnHover={true} className="h-full">
                 {marqueeItems.map((item, idx) => (
                   <div

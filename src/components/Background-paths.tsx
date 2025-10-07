@@ -228,11 +228,12 @@ function CircuitPaths({ position, colorMode = "grayscale" }: CircuitPathsProps):
   })
 
   return (
-    <div className="pointer-events-none absolute inset-0">
+    <div className="pointer-events-none absolute inset-0" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
       <svg
-        className="h-full w-full text-slate-950 dark:text-white bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
+        className="h-full w-full text-slate-950 dark:text-white"
         viewBox={viewBox}
         fill="none"
+        style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}
       >
         <title>Circuit Paths</title>
         <defs>
@@ -495,8 +496,15 @@ export function CircuitBackground({ title = "Circuit Paths", colorMode = "graysc
   )
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
-      <div className="absolute inset-0">
+    <div 
+      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
+      style={{ 
+        transform: "translateZ(0)", 
+        WebkitTransform: "translateZ(0)",
+        WebkitOverflowScrolling: "touch"
+      }}
+    >
+      <div className="absolute inset-0" style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)" }}>
         <CircuitPaths position={1} colorMode={colorMode} />
         <CircuitPaths position={-1} colorMode={colorMode} />
       </div>

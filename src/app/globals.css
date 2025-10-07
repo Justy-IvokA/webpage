@@ -349,9 +349,11 @@
 @keyframes marquee-vertical {
   from {
     transform: translateY(0);
+    -webkit-transform: translateY(0);
   }
   to {
     transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
   }
 }
 
@@ -369,6 +371,12 @@
 @layer utilities {
   .animate-marquee-vertical {
     animation: marquee-vertical var(--duration, 30s) linear infinite;
+    -webkit-animation: marquee-vertical var(--duration, 30s) linear infinite;
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   .animate-fade-in-up {
