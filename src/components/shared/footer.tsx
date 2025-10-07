@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Github, Heart, Sparkles, Zap, Users } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { assetPath } from '@/lib/asset-path';
 
 // Custom X (formerly Twitter) icon
 const XIcon = ({ className }: { className?: string }) => (
@@ -155,7 +156,7 @@ export function Footer({ animated = true, showStats = true }: { animated?: boole
             className="lg:col-span-2"
           >
             <div className="mb-6">
-              <Image src="/Ivoka-White@2x.png" alt={t('footer.brand.logoAlt')} width={120} height={32} className="h-8 w-auto mb-4" />
+              <img src={assetPath("/Ivoka-White@2x.png")} alt={t('footer.brand.logoAlt')} width={120} height={32} className="h-8 w-auto mb-4" />
             </div>
             <p className="text-[#FFFEF7]/70 text-sm leading-relaxed max-w-sm mb-2">
               {t('footer.brand.description')}

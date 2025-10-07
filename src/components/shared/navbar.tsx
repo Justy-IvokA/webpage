@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { useAppStore, useSystemTheme } from '@/store/app-store';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '@/components/ui/language-switcher';
+import { assetPath } from '@/lib/asset-path';
 import gsap from 'gsap';
 
 
@@ -299,10 +300,10 @@ export function Navbar({ className = '' }: NavbarProps) {
                   data-shake-duration="0.6"
                   data-shake-trigger="hover"
                 >
-                  <Image src="/Ivoka-White@2x.png" alt="Logo" width={100} height={100} />
+                  <img src={assetPath("/Ivoka-White@2x.png")} alt="Logo" width={100} height={100} />
                 </div>
-                <Image 
-                  src="/Ivoka-White@2x.png" 
+                <img 
+                  src={assetPath("/Ivoka-White@2x.png")} 
                   alt="Logo" 
                   width={120}
                   height={24}
