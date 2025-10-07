@@ -248,7 +248,7 @@ export const useLandmarks = () => {
   const setupLandmarkNavigation = useCallback(() => {
     const landmarks = document.querySelectorAll('[role="banner"], [role="navigation"], [role="main"], [role="complementary"], [role="contentinfo"], [role="search"]');
     
-    const handleLandmarkFocus = (e: FocusEvent) => {
+    const handleLandmarkFocus = (e: Event) => {
       const element = e.target as HTMLElement;
       const role = element.getAttribute('role');
       if (role) {
