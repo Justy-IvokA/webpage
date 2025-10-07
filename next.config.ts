@@ -32,6 +32,8 @@ const nextConfig: NextConfig = {
   // Optimización de imágenes (deshabilitado para exportación estática)
   images: {
     unoptimized: true,
+    loader: 'custom',
+    loaderFile: './src/lib/image-loader.ts',
   },
 
   // Compresión y optimización
