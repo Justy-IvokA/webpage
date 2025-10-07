@@ -1,13 +1,16 @@
 import type { NextConfig } from "next";
 
+// Solo aplicar basePath en producción (GitHub Pages)
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   // Modo estricto de React para detectar problemas potenciales
   reactStrictMode: true,
 
   // Configuración para GitHub Pages
   output: 'export',
-  basePath: '/webpage',
-  assetPrefix: '/webpage/',
+  basePath: isProd ? '/webpage' : '',
+  assetPrefix: isProd ? '/webpage/' : '',
   trailingSlash: true,
 
   // TypeScript - Solo para desarrollo, remover en producción
