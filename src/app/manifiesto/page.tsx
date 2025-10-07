@@ -31,7 +31,7 @@ interface ManifestoPageProps {
   animated?: boolean;
 }
 
-export default function ManifestoPage({ animated = true }: ManifestoPageProps = {}) {
+export default function ManifestoPage({ animated = true }: ManifestoPageProps) {
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState('introduccion');
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
