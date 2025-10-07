@@ -17,16 +17,16 @@ const teamMembers: TeamMember[] = [
         id: 'ssdv',
         name: 'Sergio Sánchez del V.',
         role: 'IA, APPs & Programación ',
-        image: '/images/equipo_VEMG.jpg',
-        video: '/videos/equipo_VEMG.mp4',
-        bio: "Sergio, mejor conocido como el MÁSTER, es programador con más de 30 años de experiencia, apasionado del torrent, la programación y el vibe coding. Le gusta las soluciones simples y eficientes. Cuando no esta creando multiples APPs, lo encuentras practicando ping pong."
+        image: '/images/equipo_SSDV.jpg',
+        video: '/videos/equipo_SSDV.mp4',
+        bio: "Apasionado por las nuevas tecnologías, con más de 30 años de experiencia en el desarrollo de soluciones digitales que impulsen la eficiencia y mejoren la experiencia del usuario. Hoy mi enfoque está en la inteligencia artificial y la automatización, aplicando innovación con propósito."
     },
     {
         id: 'vama',
         name: 'Víctor A. Mancera A.',
         role: 'Desarrollo Personal',
-        image: '/images/equipo_VEMG.jpg',
-        video: '/videos/equipo_VEMG.mp4',
+        image: '/images/equipo_VAMA.jpg',
+        video: '/videos/equipo_VAMA.mp4',
         bio: "Mentor de líderes y speaker apasionado por el desarrollo humano y los negocios éticos. Ayudo a personas y equipos a construir libertad, propósito y resultados sostenibles a través de liderazgo consciente y estrategias empresariales efectivas."
     },
     {
@@ -35,7 +35,7 @@ const teamMembers: TeamMember[] = [
         role: 'Finanzas Personales',
         image: '/images/equipo_lorena.jpg',
         video: '/videos/equipo_lorena.mp4',
-        bio: "Lorena, originaria de Torreón, es programador con más de 30 años de experiencia y aún enamorado de la programación. Le interesan las soluciones simples y eficientes. Cuando no esta tecleando codigo, lo encuentras comandando ejércitos en StarCraft o farmeando en World of Warcraft."
+        bio: "Apasionada del emprendimiento y las estrategias de negocio. Fortaleza: las relaciones públicas, en donde he impulsado proyectos innovadores y creado alianzas estratégicas potenciando crecimiento organizacional. Combina la sensibilidad de la psicología con la determinación del mundo empresarial."
     },
     {
         id: 'vemg',
@@ -43,7 +43,7 @@ const teamMembers: TeamMember[] = [
         role: 'IA, APPs & Programación',
         image: '/images/equipo_VEMG.jpg',
         video: '/videos/equipo_VEMG.mp4',
-        bio: "Eduardo, originario de Puebla, México, es programador con más de 30 años de experiencia y aún enamorado de la programación. Le interesan las soluciones simples y eficientes. Cuando no esta tecleando codigo, lo encuentras comandando ejércitos en StarCraft o farmeando en World of Warcraft."
+        bio: "Eduardo, originario de Puebla, México, es programador con más de 30 años de experiencia y aún enamorado de la programación. Le interesan las soluciones simples y eficientes. Cuando no esta en el vibe coding, lo encuentras comandando ejércitos en StarCraft o farmeando en World of Warcraft."
     },
   // Add more team members here as needed
   // {
