@@ -1,14 +1,27 @@
-# Guía de Deployment - GitHub Pages
+# Guía de Deployment
 
 ## Configuración Actual
 
-El proyecto está configurado para desplegarse en GitHub Pages con las siguientes configuraciones en `next.config.ts`:
+El proyecto está configurado para desplegarse en **GitHub Pages** o en un **dominio propio**.
 
+### GitHub Pages (Actual)
 ```typescript
+// next.config.ts
 {
   output: 'export',
   basePath: '/webpage',
   assetPrefix: '/webpage/',
+  trailingSlash: true,
+}
+```
+
+### Dominio Propio (Futuro: ivoka.ai)
+```typescript
+// next.config.ts
+{
+  output: 'export',
+  basePath: '',  // Sin basePath para dominio propio
+  assetPrefix: '',
   trailingSlash: true,
 }
 ```
@@ -63,6 +76,31 @@ Next.js aplica el basePath automáticamente a:
 - ✅ En desarrollo usa: `http://localhost:3000/`
 - ✅ En producción usa: `https://justy-ivoka.github.io/webpage/`
 
+## Migración a Dominio Propio (ivoka.ai)
+
+Cuando estés listo para usar tu dominio propio, sigue estos pasos:
+
+### 1. Actualizar `next.config.ts`
+```typescript
+// Cambiar estas líneas:
+const basePath = isProd ? '/webpage' : '';  // ← Cambiar a ''
+// ...
+assetPrefix: isProd ? '/webpage/' : '',     // ← Cambiar a ''
+```
+
+### 2. El helper `assetPath` se adapta automáticamente
+El archivo `src/lib/asset-path.ts` detecta automáticamente el dominio:
+- ✅ `*.github.io` → usa `/webpage`
+- ✅ `ivoka.ai` → sin basePath
+- ✅ `localhost` → sin basePath
+
+**No necesitas modificar nada en los componentes** 🎉
+
+### 3. Configurar DNS
+1. En tu proveedor de DNS (Cloudflare, GoDaddy, etc.)
+2. Agregar registro CNAME apuntando a `justy-ivoka.github.io`
+3. En GitHub: Settings → Pages → Custom domain → `ivoka.ai`
+
 ## Troubleshooting
 
 ### Assets no cargan en GitHub Pages
@@ -75,3 +113,8 @@ Next.js aplica el basePath automáticamente a:
 1. Verifica la consola del navegador para errores
 2. Asegúrate de acceder a la URL completa con `/webpage/`
 3. Verifica que el workflow de GitHub Actions se completó sin errores
+
+### Assets no cargan en dominio propio
+1. Verifica que actualizaste `next.config.ts` (basePath y assetPrefix a '')
+2. Haz un nuevo build y deployment
+3. El helper `assetPath` debería detectar automáticamente el dominio
