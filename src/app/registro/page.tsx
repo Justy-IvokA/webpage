@@ -27,6 +27,7 @@ const registrationSchema = z.object({
 });
 
 type RegistrationFormData = z.infer<typeof registrationSchema>;
+type FormErrors = Partial<Record<keyof RegistrationFormData, string>>;
 
 export default function RegistrationPage() {
   const [formData, setFormData] = useState<RegistrationFormData>({
@@ -34,7 +35,7 @@ export default function RegistrationPage() {
     email: '',
     consent: false,
   });
-  const [errors, setErrors] = useState<Partial<RegistrationFormData>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
@@ -62,7 +63,7 @@ export default function RegistrationPage() {
       return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const fieldErrors: Partial<RegistrationFormData> = {};
+        const fieldErrors: FormErrors = {};
         error.issues.forEach(err => {
           if (err.path[0]) {
             fieldErrors[err.path[0] as keyof RegistrationFormData] = err.message;
