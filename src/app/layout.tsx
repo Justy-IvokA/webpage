@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { AnimationProvider } from "@/components/shared/animation-provider";
 import { AccessibilityProvider } from "@/components/shared/accessibility-provider";
 import { I18nProvider } from "@/components/shared/i18n-provider";
+import { assetPath } from "@/lib/asset-path";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -68,15 +69,15 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//stats.g.doubleclick.net" />
         {/* Video prefetch for performance */}
         {/* No extra crossOrigin handling is needed; if you later serve it from a CDN, add crossOrigin="anonymous" on both the <link> and <video>.*/}
-        <link rel="preload" as="video" href="/videos/IvokaLoop.mp4" type="video/mp4"/>
+        <link rel="preload" as="video" href={assetPath("/videos/IvokaLoop.mp4")} type="video/mp4"/>
         
         {/* Icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href={assetPath("/favicon.ico")} sizes="any" />
+        <link rel="icon" href={assetPath("/icon.svg")} type="image/svg+xml" />
+        <link rel="apple-touch-icon" href={assetPath("/apple-touch-icon.png")} />
         
         {/* Web app manifest */}
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href={assetPath("/manifest.json")} />
         
         {/* Theme color for mobile browsers */}
         <meta name="theme-color" content="#0062FF" />

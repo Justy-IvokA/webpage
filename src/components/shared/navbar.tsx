@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect, useRef, useMemo } from 'react';
 import type { MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -285,30 +286,33 @@ export function Navbar({ className = '' }: NavbarProps) {
             className="flex w-full items-center justify-between gap-2 rounded-2xl border-none"
           >
             {/* Logo */}
-            <motion.a
-              href="/"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-shrink-0 items-center gap-2"
-            >
-              <div 
-                className="md:hidden items-center justify-center rounded-xl sm:inline-block sm:text-xl bg-gradient-to-br from-brand-primary to-brand-secondary sm:h-10 sm:w-10"
-                data-shake
-                data-shake-duration="0.6"
-                data-shake-trigger="hover"
+            <Link href="/" className="flex flex-shrink-0 items-center gap-2">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-2"
               >
-                <Image src="/Ivoka-White@2x.png" alt="Logo" width={100} height={100} />
-              </div>
-              <img 
-                src="/Ivoka-White@2x.png" 
-                alt="Logo" 
-                className="hidden md:block h-6 w-auto"
-                data-shake
-                data-shake-duration="0.6"
-                data-shake-trigger="hover"
-              />
-            </motion.a>
+                <div 
+                  className="md:hidden items-center justify-center rounded-xl sm:inline-block sm:text-xl bg-gradient-to-br from-brand-primary to-brand-secondary sm:h-10 sm:w-10"
+                  data-shake
+                  data-shake-duration="0.6"
+                  data-shake-trigger="hover"
+                >
+                  <Image src="/Ivoka-White@2x.png" alt="Logo" width={100} height={100} />
+                </div>
+                <Image 
+                  src="/Ivoka-White@2x.png" 
+                  alt="Logo" 
+                  width={120}
+                  height={24}
+                  className="hidden md:block h-6 w-auto"
+                  data-shake
+                  data-shake-duration="0.6"
+                  data-shake-trigger="hover"
+                />
+              </motion.div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex flex-grow items-center justify-center gap-6 xl:gap-8">
