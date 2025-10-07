@@ -123,9 +123,9 @@ export default function Home() {
               {/* <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
                 <span className="block">{t('hero.title')}</span>
               </h1> */}
-              <Image
+              <img
                 ref={logoRef}
-                src="/Ivokalogo@2x.png"
+                src={assetPath("/Ivokalogo@2x.png")}
                 alt="LogoBase"
                 width={500}
                 height={250}
