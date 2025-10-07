@@ -118,18 +118,20 @@ export default function CTAWithVerticalMarquee(): JSX.Element {
               ¡Únete a la comunidad que está revolucionando la forma en que interactuamos con la inteligencia artificial! Al unirte a <span className="font-bold">Ivoka</span>, serás parte de una tribu revolucionaria que cambiará la forma en que vivimos y trabajamos. ¡No dejes pasar esta oportunidad!
             </p>
             {/* Decorative line */}
-          <Link href="https://ivoka.ai" passHref>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Link 
+              href="https://ivoka.ai"
               className="flex items-center gap-3 pt-2 transition-all duration-500"
             >
               <div className="h-1 w-0 bg-white rounded-full transition-all duration-500 hover:w-16" />
               <span className="text-white/70 text-sm font-medium transition-all duration-500 delay-100">
                 Descubre más
               </span>
-            </motion.a>
-          </Link>
+            </Link>
+          </motion.div>
 
           </div>
           <div className="relative backdrop-blur-2xl bg-white/20 dark:bg-black/20 rounded-2xl shadow-2xl shadow-black/20 p-8 md:p-10 lg:p-12 flex items-center justify-center">
