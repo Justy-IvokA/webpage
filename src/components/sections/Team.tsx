@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { assetPath } from '@/lib/asset-path';
 
 interface TeamMember {
   id: string;
@@ -89,7 +90,7 @@ function TeamCard({ member, index }: TeamCardProps) {
         {/* Video Layer */}
         <video
           data-team-video
-          src={member.video}
+          src={assetPath(member.video)}
           className="absolute inset-0 w-full h-full object-cover z-[5]"
           loop
           muted

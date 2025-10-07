@@ -18,6 +18,7 @@ import Register from '@/components/sections/Register';
 import { Testimonials } from '@/components/testimonial';
 import { About } from '@/components/sections/About';
 import { Price } from '@/components/sections/Price';
+import { assetPath } from '@/lib/asset-path';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -95,11 +96,11 @@ export default function Home() {
             preload="auto"
             className="w-full h-full object-cover"
           >
-            <source src="/videos/IvokaLoop.mp4" type="video/mp4" />
-            {/* <source src="/IvokaLoop.webm" type="video/webm" /> */}
+            <source src={assetPath("/videos/IvokaLoop.mp4")} type="video/mp4" />
+            {/* <source src={assetPath("/IvokaLoop.webm")} type="video/webm" /> */}
             {/* Fallback image */}
             <img
-              src="/images/Poster_1080x1080.jpg"
+              src={assetPath("/images/Poster_1080x1080.jpg")}
               alt="Ivoka"
               className="w-full h-full object-cover"
             />

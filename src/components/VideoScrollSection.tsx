@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { assetPath } from '@/lib/asset-path';
 
 /**
  * Demo component for GSAP video scroll-scrub effect.
@@ -22,7 +23,7 @@ export default function VideoScrollSection() {
           playsInline
           preload="auto"
           muted={false}
-          src="/videos/stream.mp4"
+          src={assetPath("/videos/stream.mp4")}
         />
         {/* Subtle gradient overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" aria-hidden="true" />
