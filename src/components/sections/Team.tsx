@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { assetPath } from '@/lib/asset-path';
 
 interface TeamMember {
@@ -64,13 +64,55 @@ interface TeamCardProps {
 
 function TeamCard({ member, index }: TeamCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleInteraction = async () => {
+    if (!videoRef.current) return;
+
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+      setIsHovered(false);
+    } else {
+      try {
+        await videoRef.current.play();
+        setIsPlaying(true);
+        setIsHovered(true);
+      } catch (error) {
+        console.warn('Video play failed:', error);
+      }
+    }
+  };
+
+  const handleMouseEnter = async () => {
+    setIsHovered(true);
+    if (videoRef.current && !isPlaying) {
+      try {
+        await videoRef.current.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.warn('Video play failed:', error);
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current && isPlaying) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <div
       data-team-card
-      className="team-card group relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="team-card group relative cursor-pointer"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleInteraction}
       style={{ perspective: '1000px' }}
     >
       <div className="card-inner relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 border border-cyan-500/20 shadow-2xl shadow-cyan-500/10">
@@ -89,9 +131,12 @@ function TeamCard({ member, index }: TeamCardProps) {
 
         {/* Video Layer */}
         <video
+          ref={videoRef}
           data-team-video
           src={assetPath(member.video)}
-          className="absolute inset-0 w-full h-full object-cover z-[5]"
+          className={`absolute inset-0 w-full h-full object-cover z-[5] transition-opacity duration-300 ${
+            isPlaying ? 'opacity-100' : 'opacity-0'
+          }`}
           loop
           muted
           playsInline
