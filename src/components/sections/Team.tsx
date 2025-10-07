@@ -79,7 +79,7 @@ function TeamCard({ member, index }: TeamCardProps) {
           data-team-image
           className="absolute inset-0 z-10 transition-opacity duration-300"
           style={{
-            backgroundImage: `url(${member.image})`,
+            backgroundImage: `url(${assetPath(member.image)})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -261,7 +261,7 @@ export function Team() {
     <section
       id="equipo"
       data-floating-elements
-      className="team-section relative min-h-screen py-15 px-4 md:px-8 overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
+      className="team-section relative py-20 md:py-24 lg:py-28 pb-24 md:pb-32 px-4 md:px-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -299,7 +299,7 @@ export function Team() {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 justify-items-center pb-8">
           {teamMembers.map((member, index) => (
             <TeamCard key={member.id} member={member} index={index} />
           ))}
