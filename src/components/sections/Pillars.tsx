@@ -63,13 +63,11 @@ function PillarCard({ pillar, index }: PillarCardProps) {
       {/* Background Image with Parallax Effect */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="pillar-image-wrapper w-full h-full transition-transform duration-700 group-hover:scale-110">
-          <Image
+          <img
             src={assetPath(pillar.image)}
             alt={pillar.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 33vw"
-            priority={index === 0}
+            className="w-full h-full object-cover"
+            loading={index === 0 ? "eager" : "lazy"}
           />
         </div>
         

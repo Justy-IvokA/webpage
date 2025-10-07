@@ -19,22 +19,39 @@
  * - En dominio propio (ivoka.ai): sin basePath
  */
 
+// Cache del basePath para evitar recalcular en cada llamada
+let cachedBasePath: string | null = null;
+
 function getBasePath(): string {
+  // Si ya tenemos el basePath en cache, usarlo
+  if (cachedBasePath !== null) {
+    return cachedBasePath;
+  }
+  
   // En el servidor durante el build
   if (typeof window === 'undefined') {
-    return process.env.NEXT_PUBLIC_BASE_PATH || '';
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+    return basePath;
   }
   
   // En el cliente (navegador)
-  const hostname = window.location.hostname;
-  
-  // Si es GitHub Pages, usar basePath
-  if (hostname.includes('github.io')) {
-    return '/webpage';
+  try {
+    const hostname = window.location.hostname;
+    
+    // Si es GitHub Pages, usar basePath
+    if (hostname.includes('github.io')) {
+      cachedBasePath = '/webpage';
+      return '/webpage';
+    }
+    
+    // Para localhost o dominio propio (ivoka.ai), sin basePath
+    cachedBasePath = '';
+    return '';
+  } catch (error) {
+    // Fallback en caso de error (Safari/iPhone pueden tener problemas)
+    console.warn('Error detecting hostname, using default basePath');
+    return '';
   }
-  
-  // Para localhost o dominio propio (ivoka.ai), sin basePath
-  return '';
 }
 
 export function assetPath(path: string): string {
