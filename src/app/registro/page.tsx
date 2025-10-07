@@ -63,7 +63,7 @@ export default function RegistrationPage() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Partial<RegistrationFormData> = {};
-        error.errors.forEach(err => {
+        error.issues.forEach(err => {
           if (err.path[0]) {
             fieldErrors[err.path[0] as keyof RegistrationFormData] = err.message;
           }
